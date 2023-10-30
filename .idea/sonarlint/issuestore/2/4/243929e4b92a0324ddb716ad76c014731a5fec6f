@@ -1,0 +1,45 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(°€Òşÿÿÿÿ
+P
+java:S1854":Remove this useless assignment to local variable "funko3".(éİ¡
+U
+java:S1854":Remove this useless assignment to local variable "funko2".(¢¤Üâÿÿÿÿÿ
+U
+java:S1854":Remove this useless assignment to local variable "funko1".(·¨Ô‘øÿÿÿÿ
+\
+java:S1854"ARemove this useless assignment to local variable "funkoServices".(°ùóÂşÿÿÿÿ
+M
+java:S1481"2Remove this unused "funkoServices" local variable.(°ùóÂşÿÿÿÿ
+7
+java:S1116"Remove this empty statement.(Åñ­õşÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(¶±àÜ
+@	java:S106"+Replace this use of System.out by a logger.(êó—Ê
+Z
+java:S3252"DUse static access with "repositories.FunkoRepository" for "findAll".(êó—Ê
+Z
+java:S3252"DUse static access with "repositories.FunkoRepository" for "findAll".(–ƒªï
+?	java:S106"+Replace this use of System.out by a logger.(ÌÉÔ
+E	java:S106"+Replace this use of System.out by a logger.(’Á¬‡şÿÿÿÿ
+F
+java:S1481"+Remove this unused "funko1" local variable.(·¨Ô‘øÿÿÿÿ
+F
+java:S1481"+Remove this unused "funko2" local variable.(¢¤Üâÿÿÿÿÿ
+A
+java:S1481"+Remove this unused "funko3" local variable.(éİ¡
+E	java:S106 "+Replace this use of System.out by a logger.(È¾¹ıÿÿÿÿ
+_
+java:S3252!"DUse static access with "repositories.FunkoRepository" for "findAll".(éæş¯şÿÿÿÿ
+E	java:S106""+Replace this use of System.out by a logger.(Áì¡ıÿÿÿÿ
+E	java:S106#"+Replace this use of System.err by a logger.(¸×ìØüÿÿÿÿ
+@	java:S106$"+Replace this use of System.out by a logger.(‚ƒÁı
+@	java:S106'"+Replace this use of System.out by a logger.(˜êˆÊ
+_
+java:S3252("IUse static access with "repositories.FunkoRepository" for "findByNombre".(’ñ‚Û
+E	java:S106)"+Replace this use of System.out by a logger.(Öš¾Úøÿÿÿÿ
+E	java:S106*"+Replace this use of System.err by a logger.(êš€şÿÿÿÿ
+E	java:S106+"+Replace this use of System.out by a logger.(”àîáûÿÿÿÿ
+;
+java:S3457."%String contains no format specifiers.(ë¦ÉÒ
+@	java:S106."+Replace this use of System.out by a logger.(ë¦ÉÒ
+9
+java:S1128	"Remove this duplicated import.(¯µ§óùÿÿÿÿ

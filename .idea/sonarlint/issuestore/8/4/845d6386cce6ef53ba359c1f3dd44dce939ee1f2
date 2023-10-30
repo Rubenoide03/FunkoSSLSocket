@@ -1,0 +1,46 @@
+
+´
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ÖÄÎ×ûÿÿÿÿ
+H
+java:S1481"2Remove this unused "funkoServices" local variable.(Ñ¹ôÿ
+E	java:S106("+Replace this use of System.out by a logger.(Ê¢µ‰şÿÿÿÿ
+?	java:S106)"+Replace this use of System.out by a logger.(õ§ŠF
+E	java:S106*"+Replace this use of System.out by a logger.(ŒâíŸşÿÿÿÿ
+?	java:S106+"+Replace this use of System.out by a logger.(Ğ€g
+?	java:S106,"+Replace this use of System.out by a logger.(ĞÛ>
+E	java:S106-"+Replace this use of System.out by a logger.(³îÜĞúÿÿÿÿ
+@	java:S106."+Replace this use of System.out by a logger.(úÍ»û
+@	java:S106/"+Replace this use of System.out by a logger.(ÍÎ¥Õ
+@	java:S1060"+Replace this use of System.out by a logger.(­ø°‰
+E	java:S1061"+Replace this use of System.out by a logger.(İ¡üşÿÿÿÿ
+@	java:S1062"+Replace this use of System.out by a logger.(‰«†Í
+E	java:S1063"+Replace this use of System.out by a logger.(ÚÆ»Óùÿÿÿÿ
+@	java:S1064"+Replace this use of System.out by a logger.(ê×Úº
+@	java:S1065"+Replace this use of System.out by a logger.(·àãƒ
+M
+java:S1128"+Remove this unused import 'models.ModeloF'.(êë›†ûÿÿÿÿ8ØÀ»ç·1
+M
+java:S1128"+Remove this unused import 'models.MyFunko'.(ôãè¦şÿÿÿÿ8ØÀ»ç·1
+Z
+java:S1128"8Remove this unused import 'reactor.core.publisher.Flux'.(·äÍÆøÿÿÿÿ8ØÀ»ç·1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ØÀ»ç·1
+[
+java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8ØÀ»ç·1
+M
+java:S1128	"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8ØÀ»ç·1
+M
+java:S1128
+"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8ØÀ»ç·1
+Q
+java:S1128"4Remove this unused import 'java.text.DecimalFormat'.(¤°Ó˜8ØÀ»ç·1
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8ÙÀ»ç·1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8ÙÀ»ç·1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ÙÀ»ç·1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÙÀ»ç·1
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8ÙÀ»ç·1
