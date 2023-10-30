@@ -1,54 +1,121 @@
 package server;
+
+import database.DatabaseManager;
+import lombok.extern.log4j.Log4j;
+import models.MyFunko;
+import org.h2.tools.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Flux;
+import repositories.FunkoRepository;
+import services.FunkoServices;
+import utils.PropertiesReader;
+
 import javax.net.ssl.*;
 import java.io.*;
+import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.*;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class FunkoServer {
+    public static final String TOKEN_SECRET = "EstoEsElTokenSecret";
+    public static final long TOKEN_EXPIRATION = 10000;
+    private static final AtomicLong clientNumber = new AtomicLong(0);
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
+    private static final int PUERTO = 3000;
+    private static final FunkoRepository funkoServices = FunkoServices.getInstance(DatabaseManager.getInstance());
 
     public static void main(String[] args) {
-        int port = 3000;
-
         try {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            char[] keystorePassword = "your_keystore_password".toCharArray();
-            try (InputStream keystoreStream = new FileInputStream("your_keystore.jks")) {
-                keyStore.load(keystoreStream, keystorePassword);
-            }
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-            keyManagerFactory.init(keyStore, keystorePassword);
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            trustManagerFactory.init(keyStore);
-            sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
+            var myConfig = readConfigFile();
 
-            SSLServerSocketFactory sslServerSocketFactory = sslContext.getServerSocketFactory();
-            SSLServerSocket serverSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
+            logger.debug("Configurando TSL");
+
+
+
+            SSLServerSocketFactory serverFactory = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
+            SSLServerSocket serverSocket = (SSLServerSocket) serverFactory.createServerSocket(PUERTO);
+
+            logger.debug("Protocolos soportados: " + Arrays.toString(serverSocket.getSupportedProtocols()));
+            serverSocket.setEnabledCipherSuites(new String[]{"TLS_AES_128_GCM_SHA256"});
+            serverSocket.setEnabledProtocols(new String[]{"TLSv1.3"});
+
+
+            System.out.println("🚀 Servidor escuchando en el puerto 3000");
 
             while (true) {
-                try (SSLSocket clientSocket = (SSLSocket) serverSocket.accept();
-                     BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                     PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
-
-
-
-
-                    String request = reader.readLine();
-                    if (request != null) {
-
-                        String response = processRequest(request);
-                        writer.println(response);
-                    }
-                }
+                Socket clientSocket = serverSocket.accept();
+                logger.debug("Cliente conectado: " + clientSocket.getInetAddress().getHostAddress());
+                ClientHandler clientHandler = new ClientHandler(clientSocket, (FunkoServices) funkoServices);
+                clientHandler.start();
             }
-        } catch (IOException | NoSuchAlgorithmException | KeyStoreException | CertificateException |
-                 UnrecoverableKeyException | KeyManagementException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
+    private   static Map<String, String> readConfigFile() {
+     try {
+        logger.debug("Leyendo el fichero de propiedades");
+        PropertiesReader properties = new PropertiesReader("server.properties");
+
+        String keyFile = properties.getProperty("keyFile");
+        String keyPassword = properties.getProperty("keyPassword");
+        String tokenSecret = properties.getProperty("tokenSecret");
+        String tokenExpiration = properties.getProperty("tokenExpiration");
+
+        if (keyFile.isEmpty() || keyPassword.isEmpty()) {
+            throw new IllegalStateException("Hay errores al procesar el fichero de propiedades o una de ellas está vacía");
+        }
+
+        if (!Files.exists(Path.of(keyFile))) {
+            throw new FileNotFoundException("No se encuentra el fichero de la clave");
+        }
+
+        Map<String, String> configMap = new HashMap<>();
+        configMap.put("keyFile", keyFile);
+        configMap.put("keyPassword", keyPassword);
+        configMap.put("tokenSecret", tokenSecret);
+        configMap.put("tokenExpiration", tokenExpiration);
+
+        return configMap;
+    } catch (FileNotFoundException e) {
+        logger.error("Error en clave: " + e.getLocalizedMessage());
+
+        return Collections.emptyMap();
+    } catch (IOException e) {
+        logger.error("Error al leer el fichero de propiedades: " + e.getLocalizedMessage());
+        return null;
+    }
+}
+
 
     private static String processRequest(String request) {
-        // Implementa la lógica para procesar la solicitud y devolver una respuesta.
+        switch (request) {
+            case "funkoMasCaro":
+                return "Funko mas caro: " + FunkoServices.getInstance().funkoMasCaro().block();
+            case "precioMedio":
+                return "Precio medio: " + FunkoServices.getInstance().precioMedio().block();
+            case "funkosPorModelo":
+                return "Funkos por modelo: " + FunkoServices.getInstance().funkosPorModelo();
+            case "numeroFunkosPorModelo":
+                return "Numero de funkos por modelo: " + FunkoServices.getInstance().numerodeFunkosPorModelo();
+            case "funkosLanzados2023":
+                return "Funkos lanzados en 2023: " + FunkoServices.getInstance().funkosLanzados2023();
+            case "funkosStitch":
+                return "Lista de Stitches: " + FunkoServices.getInstance().funkosStitch();
+            case "numeroFunkosStitch":
+                return "Numero de Stitches: " + FunkoServices.getInstance().numeroFunkosStitch();
+        }
+
+
+
         return "Response to the request: " + request;
     }
 }

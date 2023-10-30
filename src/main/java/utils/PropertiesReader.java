@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-@Log4j
 public class PropertiesReader {
     private final String fileName;
     private final Properties properties;

@@ -1,0 +1,13 @@
+
+M
+java:S2629#"7Use the built-in formatting to construct this argument.(±Âñí
+7
+java:S1170"!Make this final field static too.(—…ë™
+7
+java:S1170"!Make this final field static too.(ÌêÆ
+@
+java:S3457)"%String contains no format specifiers.(ˆ¬…üÿÿÿÿ
+@
+java:S34570"%String contains no format specifiers.(¢ûº–ûÿÿÿÿ
+I
+java:S1068"3Remove this unused "secondsToExpire" private field.(—…ë™

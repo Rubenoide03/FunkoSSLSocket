@@ -1,0 +1,15 @@
+
+Y
+java:S2629%"7Use the built-in formatting to construct this argument.(å‹Ñîşÿÿÿÿ8‘ºÙæ·1
+W
+java:S1161":Add the "@Override" annotation above this method signature(“–ış8œºÙæ·1
+c
+java:S3457%"AFormat specifiers should be used instead of string concatenation.(å‹Ñîşÿÿÿÿ8ºÙæ·1
+S
+java:S1128"6Remove this unused import 'lombok.extern.log4j.Log4j'.(ñÔêĞ8¾¦Ãç·1
+G
+java:S1068"+Remove this unused "counter" private field.(ºòp8¡ºÙæ·1
+S
+java:S1068"1Remove this unused "funkoServices" private field.(Éıí•ıÿÿÿÿ8¡ºÙæ·1
+V
+java:S11442"4Remove this unused private "closeConnection" method.(”§ĞÂıÿÿÿÿ8¡ºÙæ·1

@@ -11,7 +11,7 @@ public class ClienteSecureSocket {
         String keystorePassword ="123456";
 
         try{
-            SSLContext sslContext= SSLContext.getInstance("TSL");
+            SSLContext sslContext= SSLContext.getInstance("SSL");
             TrustManagerFactory trustManagerFactory= TrustManagerFactory.getInstance("SunX509");
             KeyStore keyStoreCli=KeyStore.getInstance("JKS");
 
